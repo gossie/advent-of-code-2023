@@ -100,7 +100,6 @@ func Part2(filename string) int {
 	sum := 0
 	for _, line := range readData(filename) {
 		actualLine := replaceDigits(line)
-
 		sum += getDigitFromLine(actualLine)
 	}
 	return sum
