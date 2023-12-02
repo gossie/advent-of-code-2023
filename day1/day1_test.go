@@ -3,7 +3,7 @@ package day1_test
 import (
 	"testing"
 
-	"github.com/gossie/adventofcode2023/day1"
+	"github.com/gossie/advent-of-code-2023/day1"
 )
 
 func TestPart1(t *testing.T) {
