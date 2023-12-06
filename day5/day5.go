@@ -165,6 +165,7 @@ func Part1(filename string) int {
 		temperature := getValue(d.mappings["light-to-temperature"], light)
 		humidity := getValue(d.mappings["temperature-to-humidity"], temperature)
 		location := getValue(d.mappings["humidity-to-location"], humidity)
+		
 		minLocation = int(math.Min(float64(location), float64(minLocation)))
 	}
 
