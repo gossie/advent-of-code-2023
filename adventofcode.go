@@ -10,6 +10,7 @@ import (
 	"github.com/gossie/advent-of-code-2023/day4"
 	"github.com/gossie/advent-of-code-2023/day5"
 	"github.com/gossie/advent-of-code-2023/day6"
+	"github.com/gossie/advent-of-code-2023/day7"
 )
 
 func main() {
@@ -61,4 +62,12 @@ func main() {
 	startday6Part2 := time.Now().UnixMilli()
 	day6Part2 := day6.Part2("day6/day6.txt")
 	fmt.Println("day6, task 2: ", day6Part2, ", took", (time.Now().UnixMilli() - startday6Part2), "ms")
+
+	fmt.Println("\nPerforming tasks of day7")
+	startday7Part1 := time.Now().UnixMilli()
+	day7Part1 := day7.Part1("day7/day7.txt")
+	fmt.Println("day7, task 1: ", day7Part1, ", took", (time.Now().UnixMilli() - startday7Part1), "ms")
+	startday7Part2 := time.Now().UnixMilli()
+	day7Part2 := day7.Part2("day7/day7.txt")
+	fmt.Println("day7, task 2: ", day7Part2, ", took", (time.Now().UnixMilli() - startday7Part2), "ms")
 }

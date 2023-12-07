@@ -85,18 +85,18 @@ func numberOfWays(r game) int {
 	return wins
 }
 
-func Part1(filename string) int {
+func calculateWays(filename string, kerning bool) int {
 	result := 1
-	for _, r := range readData(filename, false) {
+	for _, r := range readData(filename, kerning) {
 		result *= numberOfWays(r)
 	}
 	return result
 }
 
+func Part1(filename string) int {
+	return calculateWays(filename, false)
+}
+
 func Part2(filename string) int {
-	result := 1
-	for _, r := range readData(filename, true) {
-		result *= numberOfWays(r)
-	}
-	return result
+	return calculateWays(filename, true)
 }
