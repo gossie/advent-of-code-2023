@@ -9,6 +9,8 @@ import (
 	"strings"
 )
 
+const jokerCard = 1
+
 const (
 	highCard = iota
 	onePair
@@ -42,7 +44,7 @@ func iterateCards(cards []int, winFunc func(int, int) bool, resetFunc func()) bo
 		matchingIndizes := make([]int, 0)
 		for i := 0; i < len(cards); i++ {
 			currentCard := cards[i]
-			if currentCard == 1 {
+			if currentCard == jokerCard {
 				currentCard = jokerValue
 			}
 			hits := 0
@@ -52,7 +54,7 @@ func iterateCards(cards []int, winFunc func(int, int) bool, resetFunc func()) bo
 				}
 
 				otherCard := cards[j]
-				if otherCard == 1 {
+				if otherCard == jokerCard {
 					otherCard = jokerValue
 				}
 
@@ -164,31 +166,22 @@ type hand struct {
 }
 
 func (h *hand) handType() int {
-	if isFiveOfAKind(h.cards) {
+	switch {
+	case isFiveOfAKind(h.cards):
 		return fiveOfAKind
-	}
-
-	if isFourOfAKind(h.cards) {
+	case isFourOfAKind(h.cards):
 		return fourOfAKind
-	}
-
-	if isFullHouse(h.cards) {
+	case isFullHouse(h.cards):
 		return fullHouse
-	}
-
-	if isThreeOfAKind(h.cards) {
+	case isThreeOfAKind(h.cards):
 		return threeOfAKind
-	}
-
-	if isTwoPairs(h.cards) {
+	case isTwoPairs(h.cards):
 		return twoPairs
-	}
-
-	if isOnePair(h.cards) {
+	case isOnePair(h.cards):
 		return onePair
+	default:
+		return highCard
 	}
-
-	return highCard
 }
 
 func readData(filename string, withJoker bool) []hand {
@@ -210,7 +203,7 @@ func readData(filename string, withJoker bool) []hand {
 		for _, c := range handStr[0] {
 			value := pointsByCard[c]
 			if withJoker && c == 'J' {
-				value = 1
+				value = jokerCard
 			}
 			newHand.cards = append(newHand.cards, value)
 		}
